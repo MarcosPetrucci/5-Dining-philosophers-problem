@@ -3,13 +3,13 @@ CC = gcc 		#C Compiler
 
 LIBS = -pthread -Wall
 
-FILES = *.o
+DEPS = *.h
 
-#%.o: *.c
-#	$(CC) -o $@ $< $(LIBS)
+%.o: *.c $(DEPS)
+	$(CC) -c -o $@ $< $(LIBS)
 
-.PHONY: prog1
-all: *.c
+.PHONY: prog
+prog: *.c
 	$(CC) -o prog.out $^ $(LIBS)
 
 .PHONY: run

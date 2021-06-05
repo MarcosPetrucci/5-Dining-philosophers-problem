@@ -1,3 +1,4 @@
+
 /**
  * Brian Anderson, Spring 2013
  * Com S 352, Assignment 7
@@ -40,22 +41,12 @@
  *
  * For testing purposes there is main(), with the body commented out.
  */
-
+#include "monitor.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <semaphore.h>
 
 // Define the data we need to create the monitor
-struct monitor_DataType {
-  sem_t OKtoRead;
-  sem_t OKtoWrite;
-  int readerCount;
-  int isBusyWriting;
-  
-  // The read-queue
-  int readRequested;
-};
 struct monitor_DataType monitor_data; 
 
 // Function that will block until write can start
@@ -123,10 +114,8 @@ void monitor_Destroy(){
 }
 
 
-int main() {
-  /* For testing only
-  --------------------------------
-  */
+/*int main() {
+  
    if(monitor_Initialized() == 0){
      printf("Initialized\n");
      
@@ -143,4 +132,4 @@ int main() {
    }
 
   return 0;
-}
+}*/
