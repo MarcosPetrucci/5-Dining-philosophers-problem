@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <unistd.h>
 #include <pthread.h>
-#include <ctype.h>
 #include <semaphore.h>
 #define TRUE 1
 #define FALSE 0
