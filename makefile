@@ -5,7 +5,8 @@ LIBS = -pthread -Wall
 
 DEPS = *.h
 
-%.o: *.c $(DEPS)
+.PHONY: %.o
+%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(LIBS)
 
 .PHONY: prog
