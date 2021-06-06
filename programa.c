@@ -12,16 +12,17 @@ void *thread_filosofo(void *i)
 {
 	int indc;
 	int tempo;
+
+	//Variavel que armazena indice do filósofo
+	indc = * (int*) i;
+
 	while(TRUE)
 	{
-		//Variavel que armazena indice do filósofo
-		indc = * (int*) i;
-		
 		//Tempo que o filósofo ficara pensando
 		tempo = (1 + rand())  % 10;
 
 		//Imprime mensagem indicativa
-		printf("\nFilosofo %d ficara pensando por %ds", indc, tempo);
+		printf("\nFilosofo %d pensa por %ds", indc, tempo);
 		sleep(tempo);
 
 		//Após acordar, o filósofo tentará pegar os palitos
@@ -30,15 +31,15 @@ void *thread_filosofo(void *i)
 		//Tempo que o filósofo ficara comendo
 		tempo = (1 + rand())  % 10;
 		
-		printf("\nFilosofo %d ficara comendo por %ds", indc, tempo);
+		printf("\nFilosofo %d come por %ds", indc, tempo);
 		sleep(tempo);
-		printf("\nO Filosofo %d terminou de comer", indc);
+		printf("\nFilosofo %d terminou de comer", indc);
 
 		//O filósofo, após comer, devolve os palitos
 		devolve_palitos(indc);
-
-		return NULL;
 	}
+
+	return NULL;
 }
 
 

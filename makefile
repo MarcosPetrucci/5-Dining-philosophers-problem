@@ -5,10 +5,12 @@ LIBS = -pthread -Wall
 
 DEPS = *.h
 
+OBJ = monitor.o programa.o
+
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(LIBS)
 
-prog: *.c
+prog: $(OBJ)
 	$(CC) -o prog.out $^ $(LIBS)
 
 .PHONY: run
