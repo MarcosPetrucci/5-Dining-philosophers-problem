@@ -72,6 +72,7 @@ void devolve_palitos(int i)
 
 }
 
+
 void iniciar_monitor()
 {
   //Inicia o semáforo com valor 1
