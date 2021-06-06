@@ -8,6 +8,7 @@
 #include "monitor.h"
 #endif
 
+//Thread dos filósofos
 void *thread_filosofo(void *i)
 {
 	int indc;
@@ -31,6 +32,7 @@ void *thread_filosofo(void *i)
 		//Tempo que o filósofo ficara comendo
 		tempo = (1 + rand())  % 10;
 		
+		//Imprime mensagem indicativa
 		printf("\nFilosofo %d come por %ds", indc, tempo);
 		sleep(tempo);
 		printf("\nFilosofo %d terminou de comer", indc);
@@ -41,7 +43,6 @@ void *thread_filosofo(void *i)
 
 	return NULL;
 }
-
 
 int main()
 {

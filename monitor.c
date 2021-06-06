@@ -11,7 +11,7 @@
 #endif
 
 //Semáforo usado no monitor
-sem_t mutex;
+sem_t semaforo;
 
 //Variavel de condição para os filofos
 filo Filosofo[5];
@@ -20,7 +20,7 @@ filo Filosofo[5];
 void ocioso(int i)
 {
   //Filósofo com fome, mas impossibilitado de comer
-  sem_post(&mutex); //Libera mutex
+  sem_post(&semaforo); //Libera semaforo
 }
 
 //Muda o estado do filósofo para comendo se os palitos estiverem disponíveis
@@ -39,7 +39,7 @@ void verifica_disponibilidade(int i)
 void pegar_palitos(int i)
 {
   //Esperar a disponibiliade do semáforo
-  sem_wait(&mutex);
+  sem_wait(&semaforo);
 
   //O Filósofo fica faminto
   Filosofo[i].estado = FAMINTO;
@@ -54,14 +54,14 @@ void pegar_palitos(int i)
   }
 
   //O filósofo está comendo, incrementar semáforo
-  sem_post(&mutex);
+  sem_post(&semaforo);
 }
 
 //Função que organiza a devolução dos palitos
 void devolve_palitos(int i)
 {
   //Esperar pela disponibilidade do semáforo
-  sem_wait(&mutex);
+  sem_wait(&semaforo);
 
   //O filósofo terminou de comer, 
   Filosofo[i].estado = PENSANDO;
@@ -77,7 +77,7 @@ void devolve_palitos(int i)
 void iniciar_monitor()
 {
   //Inicia o semáforo com valor 1
-	sem_init(&mutex,0,1); 
+	sem_init(&semaforo,0,1); 
 	
   int i;
   for(i = 0;i < 5;i++)
@@ -86,6 +86,3 @@ void iniciar_monitor()
 		Filosofo[i].estado = PENSANDO;
 	}
 }
-
-
-
