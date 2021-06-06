@@ -5,16 +5,15 @@
 #include <semaphore.h>
 #define TRUE 1
 #define FALSE 0
+
+#ifndef MONITOR_H
+#include "monitor.h"
+#endif
+
 //Semáforo usado no monitor
 sem_t mutex;
 
 //Variavel de condição para os filofos
-typedef struct
-{
-  //Mapeia o estado do filosofo
-  enum {PENSANDO,FAMINTO,COMENDO} estado;
-
-}filo;
 filo Filosofo[5];
 
 //Função que resolve um filosofo ocioso

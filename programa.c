@@ -4,11 +4,41 @@
 #include <pthread.h>
 #include <time.h>
 
+#ifndef MONITOR_H
 #include "monitor.h"
+#endif
 
 void *thread_filosofo(void *i)
 {
-	
+	int indc;
+	int tempo;
+	while(TRUE)
+	{
+		//Variavel que armazena indice do filósofo
+		indc = * (int*) i;
+		
+		//Tempo que o filósofo ficara pensando
+		tempo = (1 + rand())  % 10;
+
+		//Imprime mensagem indicativa
+		printf("\nFilosofo %d ficara pensando por %ds", indc, tempo);
+		sleep(tempo);
+
+		//Após acordar, o filósofo tentará pegar os palitos
+		pegar_palitos(indc);
+
+		//Tempo que o filósofo ficara comendo
+		tempo = (1 + rand())  % 10;
+		
+		printf("\nFilosofo %d ficara comendo por %ds", indc, tempo);
+		sleep(tempo);
+		printf("\nO Filosofo %d terminou de comer", indc);
+
+		//O filósofo, após comer, devolve os palitos
+		devolve_palitos(indc);
+
+		return NULL;
+	}
 }
 
 
@@ -20,11 +50,17 @@ int main()
 	//Inicia o monitor
 	iniciar_monitor();
 
+	//Preparar as threads
 	int i;
-	for(i = 0; ; i < 5; i++)
+	for(i = 0; i < 5 ; i++)
 	{
-		pthread_create(&filosofo[i], NULL, thread_filosofo, i);
+		pthread_create(&filosofo[i], NULL, thread_filosofo, &i);
 	}
+	for(i = 0; i < 5 ; i++)
+	{
+		pthread_join(filosofo[i], NULL);
+	}
+
 
 	return 0;
 }
