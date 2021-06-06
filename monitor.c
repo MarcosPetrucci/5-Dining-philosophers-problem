@@ -36,6 +36,7 @@ void verifica_disponibilidade(int i)
   }
 }
 
+//Função que organiza a pegada dos palitos
 void pegar_palitos(int i)
 {
   //Esperar a disponibiliade do semáforo
@@ -57,6 +58,7 @@ void pegar_palitos(int i)
   sem_post(&mutex);
 }
 
+//Função que organiza a devolução dos palitos
 void devolve_palitos(int i)
 {
   //Esperar pela disponibilidade do semáforo
@@ -72,7 +74,7 @@ void devolve_palitos(int i)
 
 }
 
-
+//Função que inicia o monitor e suas variáveis
 void iniciar_monitor()
 {
   //Inicia o semáforo com valor 1
